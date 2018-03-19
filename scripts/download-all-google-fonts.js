@@ -17,6 +17,8 @@ async.forEachLimit(typefaces, 10, (typeface, cb) => {
     `node scripts/create-package-from-google-font-id.js ${typeface.id}`,
     () => {
       cb()
+      // setTimeout(cb, 0)
+
     }
   )
 })

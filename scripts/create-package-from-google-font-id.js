@@ -13,11 +13,18 @@ const { packageJson, fontFace, readme } = require(`./templates`)
 const download = require(`./download-file`)
 const commonWeightNameMap = require(`./common-weight-name-map`)
 
-//const baseurl = `https://google-webfonts-helper.herokuapp.com/api/fonts/`
-const baseurl = `http://localhost:9000/api/fonts/`
+const baseurl = `https://google-webfonts-helper.herokuapp.com/api/fonts/`
+// const baseurl = `http://localhost:9000/api/fonts/`
 const id = process.argv[2]
 if (!id) {
   console.warn(`You need to pass in the google font id as an argument`)
+  process.exit()
+}
+
+const brokenIds = ['exo-2']
+
+if (brokenIds.indexOf(id) !== -1) {
+  console.warn(`Skipping: exo-2 on google does not support tabular-nums - the checked in woff files does`)
   process.exit()
 }
 
